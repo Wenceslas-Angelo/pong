@@ -1,0 +1,12 @@
+{
+  "name": "pong",
+  "version": "1.0.0",
+  "description": "pong game",
+  "main": "src/main.js",
+  "author": "Wenceslas-Angelo <wenceslasangelo@gmail.com>",
+  "license": "MIT",
+  "scripts": {},
+  "devDependencies": {
+    "eslint": "^8.23.1"
+  }
+}
