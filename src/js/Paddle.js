@@ -1,15 +1,18 @@
 class Paddle {
   /**
    *
-   * @param {number} positionX
-   * @param {number} positionY
+   * @param {Object} game
+   * @param {Number} positionX
+   * @param {Number} positionY
    */
-  constructor(positionX, positionY) {
+  constructor(game, positionX, positionY) {
+    this.game = game;
     this.positionX = positionX;
     this.positionY = positionY;
     this.width = 10;
     this.height = 100;
     this.velocity = 0;
+    this.speed = 5;
   }
 
   /**
@@ -21,15 +24,9 @@ class Paddle {
     ctx.fillRect(this.positionX, this.positionY, this.width, this.height);
   }
 
-  /**
-   *
-   * @param {CanvasRenderingContext2D} ctx
-   * @param {number} canvasHeight
-   */
-  update(ctx, canvasHeight) {
-    this.draw(ctx);
+  update() {
     const newPositionY = this.positionY + this.velocity;
-    if (newPositionY > 0 && newPositionY + this.height < canvasHeight)
+    if (newPositionY > 0 && newPositionY + this.height < this.game.height)
       this.positionY += this.velocity;
   }
 }
