@@ -8,6 +8,16 @@ body {
   background: black;
 }
 
+.score {
+  color: #fff;
+  font-size: 50px;
+  width: 70%;
+  margin: 40px auto;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bolder;
+}
+
 #canvas1 {
   background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
   width: 800px;

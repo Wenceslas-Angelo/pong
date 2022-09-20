@@ -3,12 +3,16 @@ import Ball from "./js/Ball.js";
 
 const canvas = document.getElementById("canvas1");
 const context = canvas.getContext("2d");
+const userScoreTxt = document.querySelector(".score__user");
+const computerScoreTxt = document.querySelector(".score__computer");
 
 let speed = 5;
 let key = {
   upIsPressed: false,
   downIsPressed: false,
 };
+let userScore = 0;
+let compScore = 0;
 
 canvas.width = 800;
 canvas.height = 400;
@@ -72,7 +76,12 @@ function animate() {
   paddleUser.update(context, canvas.height);
   paddleComp.update(context, canvas.height);
   ball.update(context, canvas.width, canvas.height);
-  paddleCompUpdate();
+
+  if (ball.positionX >= canvas.width / 2 && ball.speedX > 0) {
+    paddleCompUpdate();
+  } else {
+    paddleComp.velocity = 0;
+  }
 
   // Move paddle user
   if (key.upIsPressed) {
@@ -86,8 +95,19 @@ function animate() {
   // Check collision
   if (checkCollision(ball, paddleComp)) {
     ball.speedX = -ball.velocity;
+    ball.velocity += 1;
   } else if (checkCollision(ball, paddleUser)) {
     ball.speedX = ball.velocity;
+    ball.velocity += 1;
+  }
+
+  // lose condition
+  if (ball.positionX + ball.width >= canvas.width) {
+    userScore += 1;
+    userScoreTxt.innerHTML = userScore;
+  } else if (ball.positionX <= 0) {
+    compScore += 1;
+    computerScoreTxt.innerHTML = compScore;
   }
   requestAnimationFrame(animate);
 }
